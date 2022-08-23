@@ -7,13 +7,13 @@ resource "random_integer" "priority" {
 }
 
 resource "azurerm_resource_group" "rg" {
-    name = "${random_pet.azure.id}-rg"
-    location = "eastus"
+  name     = "${random_pet.azure.id}-rg"
+  location = "eastus"
 }
 
 module "networking" {
-    source = "./modules/networking"
-    rg_location = azurerm_resource_group.rg.location
-    name = random_pet.azure.id
-    rg_name = azurerm_resource_group.rg.name 
+  source      = "./modules/networking"
+  rg_location = azurerm_resource_group.rg.location
+  name        = random_pet.azure.id
+  rg_name     = azurerm_resource_group.rg.name
 }
